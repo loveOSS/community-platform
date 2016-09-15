@@ -17,29 +17,6 @@ class IssueCommentSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return [
-           'issuecommentevent_created' => [
-               ['addLabels', 255],
-           ],
-        ];
-    }
-
-    public function addLabels(GitHubEvent $githubEvent)
-    {
-        if (true === $this->container->getParameter('enable_labels')) {
-            $event = $githubEvent->getEvent();
-
-            $this->container
-                ->get('app.issue_listener')
-                ->handleCommentAddedEvent(
-                    $event->issue->getNumber(),
-                    $event->comment->getBody()
-            );
-
-            $githubEvent->addStatus([
-                'event' => 'issue_comment_created',
-                'action' => 'add labels if required',
-            ]);
-        }
+        return [];
     }
 }
