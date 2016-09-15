@@ -33,16 +33,6 @@ class WebhookControllerTest extends WebTestCase
     {
         $tests = [];
         $tests[] = [
-            'issue_comment',
-            'issue_comment.created.json',
-            [
-                [
-                    'event' => 'issue_comment_created',
-                    'action' => 'add labels if required',
-                ],
-            ],
-        ];
-        $tests[] = [
             'pull_request',
             'pull_request.opened.json',
             [
