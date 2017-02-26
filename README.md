@@ -1,8 +1,6 @@
-# PrestonBot
+# GitHub platform
 
-This application is based on Symfony CarsonBot and aims to help PrestaShop maintainers and contributors.
-
-![Preston, the PrestaShop contributor best friend](http://i.imgur.com/r26gJW4.png)
+GitHub platform gives you an easy api and tools to make your own Github bots and tools.
 
 ## How to install ?
 
@@ -36,7 +34,7 @@ Yeah, mostly the *Symfony* ones:
 ./vendor/bin/php-cs-fixer fix # we use the Symfony level + short array notation filter
 ```
 
-## What is Preston capable of doing?
+## What can I expect from GitHub platform?
 
 * Comment on a pull request to help a contributor fix his work;
 * Extract data from the pull request and look for some terms;
