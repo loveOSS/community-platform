@@ -4,7 +4,7 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     github-platform
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
@@ -16,7 +16,7 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            PrestaShopBeatsEveryone
+    secret:            GithubPlatformIsAwesome
 
     # token used to update labels on the repository, etc
     github_token: '%env(GH_TOKEN)%'
@@ -25,20 +25,12 @@ parameters:
     github_secured_token: '%env(GH_SECURED_TOKEN)%'
 
     # point to the selected repository
-    repository_username: PrestaShop
-    repository_name: PrestaShop
+    repository_username: mickaelandrieu
+    repository_name: github-platform
 
     # mail used to send every notification
-    admin_mail: mickael.andrieu@prestashop.com
+    admin_mail: andrieu.travail@gmail.com
     
     # list of recipients for mail notifications
-    recipients:
-        'waiting for code review':
-            - waiting_code_review@prestashop.com
-        'waiting for QA feedback':
-            - foo@prestashop.com
-            - bar@prestashop.com
-            - baz@prestashop.com
-        'waiting for PM feedback':
-            - waiting_for_pm@prestashop.com
+    recipients: []
 

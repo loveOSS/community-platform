@@ -6,7 +6,7 @@
 DirectoryIndex app.php
 
 # Disabling MultiViews prevents unwanted negotiation, e.g. "/app" should not resolve
-# to the front controller "/app.php" but be rewritten to "/app.php/app".
+# to the front controller "/index.php" but be rewritten to "/index.php/app".
 <IfModule mod_negotiation.c>
     Options -MultiViews
 </IfModule>
@@ -17,7 +17,7 @@ DirectoryIndex app.php
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
-    # resolution of the app.php file and to redirect to the correct URI. It will
+    # resolution of the index.php file and to redirect to the correct URI. It will
     # work in environments without path prefix as well, providing a safe, one-size
     # fits all solution. But as you do not need it in this case, you can comment
     # the following 2 lines to eliminate the overhead.
@@ -29,7 +29,7 @@ DirectoryIndex app.php
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Redirect to URI without front controller to prevent duplicate content
-    # (with and without `/app.php`). Only do this redirect on the initial
+    # (with and without `/index.php`). Only do this redirect on the initial
     # rewrite by Apache and not on subsequent cycles. Otherwise we would get an
     # endless redirect loop (request -> rewrite to front controller ->
     # redirect -> request -> ...).
