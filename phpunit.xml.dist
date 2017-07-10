@@ -14,7 +14,7 @@
     bootstrap                   = "app/autoload.php" >
 
     <testsuites>
-        <testsuite name="Community Platform Test Suite">
+        <testsuite name="Community Platform">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
