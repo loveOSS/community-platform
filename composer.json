@@ -1,6 +1,6 @@
 {
-    "name": "mickaelandrieu/github-platform",
-    "description": "github-platform is a PHP framework to make GitHub bots",
+    "name": "community-platform/community-platform",
+    "description": "Community Platform is a PHP framework to make GitHub bots",
     "license": "GPL-3.0+",
     "authors": [
     {
@@ -62,9 +62,6 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "3.2-dev"
         }
     }
 }

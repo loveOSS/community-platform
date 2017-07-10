@@ -2,7 +2,7 @@ filter:
     excluded_paths:
         - 'vendor/*'
         - 'tests/*'
-        - 'src/PrestaShopBundle/Tests/*'
+        - 'src/AppBundle/Tests/*'
 
 tools:
     php_cs_fixer:
