@@ -5,7 +5,7 @@ TAPP=docker-compose exec
 CAPP=docker-compose run app composer
 CONSOLE=$(APP) /usr/local/bin/php bin/console
 
-.PHONY: help install start stop destroy composer console app nginx server
+.PHONY: help install start stop destroy composer console app nginx test server
 
 help:           ## Show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
@@ -36,6 +36,9 @@ app:            ## Access shell of application container
 
 nginx:          ## Access shell of nginx container
 	$(TAPP) nginx sh
+
+test:          ## Launch tests
+	$(TAPP) app ./vendor/bin/simple-phpunit
 
 server:         ## Start local PHP server (Non docker use only)
 	php -S localhost:8888 -t web
