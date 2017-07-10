@@ -2,7 +2,7 @@
 
 ## PHP
 
-The minimal requirements for this application is `PHP 5.6+`.
+The minimal requirements for this application is `PHP 7.0+`.
 
 ## Composer
 
@@ -16,13 +16,13 @@ When installed, use ``composer install`` command to install dependencies.
 The application needs ``mod_rewrite`` to be enabled and the following configuration file:
 
 ```
-# /etc/apache2/sites-enabled/prestonbot.conf
+# /etc/apache2/sites-enabled/community-platform.conf
 <VirtualHost <your-domain.com>:80>
     ServerName <your-domain.com>
     ServerAlias <www.your-domain.com>
 
-    DocumentRoot /path/to/application/web
-    <Directory /path/to/application/web>
+    DocumentRoot /path/to/community-platform/web
+    <Directory /path/to/community-platform/web>
         AllowOverride None
         Order Allow,Deny
         Allow from All
@@ -37,20 +37,20 @@ The application needs ``mod_rewrite`` to be enabled and the following configurat
 
     # uncomment the following lines if you install assets as symlinks
     # or run into problems when compiling LESS/Sass/CoffeScript assets
-    # <Directory /path/to/application/>
+    # <Directory /path/to/community-platform/>
     #     Options FollowSymlinks
     # </Directory>
 
     # optionally disable the RewriteEngine for the asset directories
     # which will allow apache to simply reply with a 404 when files are
     # not found instead of passing the request into the full symfony stack
-    <Directory /path/to/application/web/bundles>
+    <Directory /path/to/community-platform/web/bundles>
         <IfModule mod_rewrite.c>
             RewriteEngine Off
         </IfModule>
     </Directory>
-    ErrorLog /var/log/apache2/project_error.log
-    CustomLog /var/log/apache2/project_access.log combined
+    ErrorLog /var/log/apache2/community-platform_error.log
+    CustomLog /var/log/apache2/community-platform_access.log combined
 </VirtualHost>
 ```
 
@@ -104,3 +104,7 @@ we also need a cron task in order to "daily" executes a mail sending:
 ```
 bin/console p:r:s
 ```
+
+## Docker installation
+
+Complete the environements variables in the `docker-compose.yml` file and execute `docker-compose up -d` command. The platform will be available at `http://127.0.0.1`.

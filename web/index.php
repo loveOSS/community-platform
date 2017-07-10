@@ -19,8 +19,9 @@ if (getenv('APP_DEBUG')) {
     Debug::enable();
 }
 
-// Request::setTrustedProxies(['0.0.0.0/0'], Request::HEADER_FORWARDED);
+Request::setTrustedProxies(['0.0.0.0/0'], Request::HEADER_FORWARDED);
 $kernel = new AppKernel(getenv('APP_ENV'), getenv('APP_DEBUG'));
+
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();

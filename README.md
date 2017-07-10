@@ -1,6 +1,6 @@
-# GitHub platform
+# Community Platform
 
-GitHub platform gives you an easy api and tools to make your own Github bots and tools.
+Community Platform gives you an easy api and tools to make your own Github bots and tools.
 
 ## How to install ?
 
