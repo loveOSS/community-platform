@@ -73,17 +73,12 @@ class Line
     public function getFilepath()
     {
         if ($this->isFilename()) {
-            $filename = $this->getFilename();
-            $len = strlen($filename);
-
-            return substr(
+            $extract = substr(
                 $this->content,
-                strlen(self::TOKEN_FILENAME),
-                strpos(
-                    $this->content,
-                    $filename.self::TOKEN_SECOND_FILENAME
-                ) - strlen(self::TOKEN_FILENAME) + $len
+                strlen(self::TOKEN_FILENAME)
             );
+
+            return substr($extract, 0, strpos($extract, ' '));
         }
     }
 

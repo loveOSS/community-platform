@@ -15,6 +15,17 @@ parameters:
 
     github_secured_token: 'totalyFakeTokenForTests'
 
+    # list of recipients for mail notifications
+    recipients:
+        'waiting for code review':
+            - waiting_code_review@prestashop.com
+        'waiting for QA feedback':
+            - foo@prestashop.com
+            - bar@prestashop.com
+            - baz@prestashop.com
+        'waiting for PM feedback':
+            - waiting_for_pm@prestashop.com
+
 services:
     fake_comment_api:
         class: Tests\AppBundle\Comments\FakeCommentApi
