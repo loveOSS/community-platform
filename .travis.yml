@@ -19,7 +19,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer update --prefer-dist --no-interaction --no-progress
+  - composer install --prefer-dist --no-interaction --no-progress
 
 script:
   - vendor/bin/simple-phpunit

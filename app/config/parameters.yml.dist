@@ -2,11 +2,11 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     github-platform
-    database_user:     root
-    database_password: ~
+    database_host:     db
+    database_port:     3306
+    database_name:     github_platform
+    database_user:     github_platform
+    database_password: github_platform
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
@@ -16,21 +16,21 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            GithubPlatformIsAwesome
+    secret:            CommunityPlatformIsAwesome
 
-    # token used to update labels on the repository, etc
+    # A token used to update labels on the repository, etc
     github_token: '%env(GH_TOKEN)%'
 
-    # token to identify GitHub requests
+    # A token to identify GitHub requests
     github_secured_token: '%env(GH_SECURED_TOKEN)%'
 
-    # point to the selected repository
-    repository_username: mickaelandrieu
-    repository_name: github-platform
+    # The selected repository
+    repository_username: community-platform
+    repository_name: community-platform
 
-    # mail used to send every notification
+    # A mail used to send every notification
     admin_mail: andrieu.travail@gmail.com
     
-    # list of recipients for mail notifications
+    # A list of recipients for mail notifications
     recipients: []
 
