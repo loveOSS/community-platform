@@ -24,22 +24,22 @@ services:
       - /srv/github-platform/var/logs
       - /srv/github-platform/var/sessions
       - /srv/github-platform/vendor
-    networks:
-      - github-platform
+
   db:
     build:
       context: ./docker/db
       dockerfile: ./Dockerfile
     environment:
-      - MYSQL_DATABASE=github_platform
+      - MYSQL_DATABASE=community_platform
       # You should definitely change the password in production
-      - MYSQL_PASSWORD=github_platform
+      - MYSQL_PASSWORD=community_platform
       - MYSQL_RANDOM_ROOT_PASSWORD=true
-      - MYSQL_USER=github_platform
+      - MYSQL_USER=community_platform
     volumes:
       - db-data:/var/lib/mysql:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/mysql:rw
+
   nginx:
     image: nginx:1.11-alpine
     depends_on:
@@ -49,12 +49,7 @@ services:
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./web:/srv/github-platform/web:ro
-    networks:
-      - github-platform
 
 volumes:
   app-web: {}
   db-data: {}
-
-networks:
-  github-platform: ~

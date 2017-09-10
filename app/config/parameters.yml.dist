@@ -4,9 +4,9 @@
 parameters:
     database_host:     db
     database_port:     3306
-    database_name:     github_platform
-    database_user:     github_platform
-    database_password: github_platform
+    database_name:     community_platform
+    database_user:     community_platform
+    database_password: community_platform
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
