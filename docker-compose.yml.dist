@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
     environment:
-      # Change to prod in production
+      # Change "dev" to "prod" in production
       - APP_ENV=dev
       - APP_DEBUG=true
       - GH_TOKEN=putAValidGithubToken
@@ -45,7 +45,7 @@ services:
     depends_on:
       - app
     ports:
-      - '80:80'
+      - '81:80'
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./web:/srv/github-platform/web:ro
