@@ -3,7 +3,7 @@
 namespace AppBundle\BotAction;
 
 /**
- * Represents every action of Preston.
+ * Represents every action of Community Bot.
  */
 class BotAction
 {
