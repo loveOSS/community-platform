@@ -1,29 +1,19 @@
-language: php
+sudo: required
 
-sudo: false
-
-cache:
-  directories:
-    - bin
-    - vendor
-    - $HOME/.composer/cache
-
-php:
-  - 7.0
-
-env:
-  - SYMFONY_PHPUNIT_VERSION=5.5
-
-before_install:
-  - phpenv config-rm xdebug.ini
-  - composer self-update
+services:
+  - docker
 
 install:
-  - composer update --prefer-dist --no-interaction --no-progress
+  - make
 
 script:
-  - vendor/bin/simple-phpunit
-  - vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
+  - cp docker-compose.yml.dist docker-compose.yml
+  - make start
+  - make composer install
+  - make console security:check
+  - make console doctrine:schema:create
+  - make test
+  - docker-compose exec app /usr/bin/php vendor/bin/php-cs-fixer fix --config=.php_cs -v --dry-run --using-cache=no --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB $TRAVIS_COMMIT_RANGE`
 
 notifications:
   email: false

@@ -30,7 +30,7 @@ framework:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id:  session.handler.native_file
         save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
-        name: "PRESTON_BOT"
+        name: "COM_PLATFORM"
     fragments:       ~
     http_method_override: true
     assets:
@@ -52,6 +52,7 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        server_version: '5.7'
         charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -61,9 +62,16 @@ doctrine:
         #     path:     "%database_path%"
 
     orm:
+        default_entity_manager:   'AppBundle'
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        auto_mapping: false
+
+        mappings:
+            Bot:
+                type: 'yml'
+                dir: '%kernel.root_dir%/Resources/config/doctrine'
+                prefix: 'AppBundle\BotAction'
 
 # Swiftmailer Configuration
 swiftmailer:

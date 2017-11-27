@@ -37,7 +37,7 @@ app:            ## Access shell of application container
 nginx:          ## Access shell of nginx container
 	$(TAPP) nginx sh
 
-test:          ## Launch tests
+test:           ## Launch tests
 	$(TAPP) app ./vendor/bin/simple-phpunit
 
 server:         ## Start local PHP server (Non docker use only)
