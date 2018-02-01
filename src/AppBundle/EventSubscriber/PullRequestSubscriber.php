@@ -131,7 +131,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ;
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
@@ -175,7 +175,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             ;
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,

@@ -3,8 +3,8 @@
 namespace tests\AppBundle\Security;
 
 use AppBundle\Security\SignatureValidator;
-use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>

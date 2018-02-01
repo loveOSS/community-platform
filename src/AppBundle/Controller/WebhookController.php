@@ -20,9 +20,8 @@ class WebhookController extends Controller
         GithubEvent $event = null,
         EventDispatcherInterface $eventDispatcher,
         LoggerInterface $logger
-    )
-    {
-        if (is_null($event)) {
+    ) {
+        if (null === $event) {
             return new JsonResponse('[err] event not found.');
         }
         $eventName = strtolower($event->getName()).'_'.$event->getEvent()->getAction();

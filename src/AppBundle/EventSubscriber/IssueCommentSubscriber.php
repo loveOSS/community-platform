@@ -4,12 +4,10 @@ namespace AppBundle\EventSubscriber;
 
 use AppBundle\Event\GitHubEvent;
 use AppBundle\Issues\Listener;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class IssueCommentSubscriber implements EventSubscriberInterface
 {
-
     /**
      * @var Listener
      */

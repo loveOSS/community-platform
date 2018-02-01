@@ -5,8 +5,8 @@ namespace tests\AppBundle\Issues;
 use AppBundle\Issues\Listener;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
-use Psr\Log\NullLogger;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
