@@ -42,7 +42,7 @@ class IssueSubscriber implements EventSubscriberInterface
             $event = $githubEvent->getEvent();
 
             $status = $this->container
-                ->get('app.issue_listener')
+                ->get('AppBundle\Issues\Listener')
                 ->handleLabelAddedEvent(
                     $event->issue->getNumber(),
                     $event->label->getName()

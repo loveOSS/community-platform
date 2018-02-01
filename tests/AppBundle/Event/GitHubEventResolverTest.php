@@ -7,8 +7,9 @@ use AppBundle\Event\GitHubEventResolver;
 use Lpdigital\Github\Parser\WebhookResolver;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
+use PHPUnit\Framework\TestCase;
 
-class GitHubEventResolverTest extends \PHPUnit_Framework_TestCase
+class GitHubEventResolverTest extends TestCase
 {
     const REPOSITORY_OWNER = 'loveOSS';
     const REPOSITORY_NAME = 'test';

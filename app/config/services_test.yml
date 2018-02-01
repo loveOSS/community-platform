@@ -27,23 +27,12 @@ parameters:
             - waiting_for_pm@prestashop.com
 
 services:
-    fake_comment_api:
-        class: Tests\AppBundle\Comments\FakeCommentApi
-        arguments:
-            - '@app.github.comments_api'
-            - '%repository_username%'
-            - '%repository_name%'
-            - '@twig'
-    app.status_api:
-        class: Tests\AppBundle\Issues\NullStatusApi
-        arguments: ['@app.github.cached_labels_api', '%repository_username%', '%repository_name%']
+    Symfony\Component\Validator\Validator\ValidatorInterface:
+        public: true
+
+    Tests\AppBundle\Issues\NullStatusApi:
 
     # Your integrations tests shouldn't post comments to github
-    app.pullrequest_listener:
-        class: AppBundle\PullRequests\Listener
+    AppBundle\PullRequests\Listener:
         arguments:
-            - '@fake_comment_api'
-            - '@app.commit.repository'
-            - '@validator'
-            - '@app.pull_request.repository'
-            - '@logger'
+            - 'Tests\AppBundle\Comments\FakeCommentApi'

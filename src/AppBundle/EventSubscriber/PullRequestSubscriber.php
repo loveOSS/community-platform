@@ -58,7 +58,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         if (true === $this->container->getParameter('labels_pr_creation')) {
             $this->container
-                ->get('app.issue_listener')
+                ->get('AppBundle\Issues\Listener')
                 ->handlePullRequestCreatedEvent($pullRequest->getNumber())
             ;
 
@@ -80,7 +80,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
         $this->container
-            ->get('app.pullrequest_listener')
+            ->get('AppBundle\PullRequests\Listener')
             ->checkForTableDescription($pullRequest)
         ;
 
@@ -101,7 +101,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
         $hasErrors = $this->container
-            ->get('app.pullrequest_listener')
+            ->get('AppBundle\PullRequests\Listener')
             ->checkCommits($pullRequest)
         ;
 
@@ -126,7 +126,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
             $this->container
-                ->get('app.issue_listener')
+                ->get('AppBundle\Issues\Listener')
                 ->handleWaitingForWordingEvent($pullRequest->getNumber())
             ;
         }
@@ -144,7 +144,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     public function checkIfPrFixCriticalIssue(GitHubEvent $githubEvent)
     {
         $labelWasAdded = $this->container
-            ->get('app.issue_listener')
+            ->get('AppBundle\Issues\Listener')
             ->addLabelCriticalLabelIfNeeded($githubEvent->getEvent()->pullRequest)
         ;
 
@@ -170,7 +170,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
         if ($found = $diff->path(self::CLASSIC_PATH)->match()) {
             $this->container
-                ->get('app.issue_listener')
+                ->get('AppBundle\Issues\Listener')
                 ->handleClassicChangesEvent($pullRequest->getNumber())
             ;
         }
@@ -197,7 +197,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $sender = $githubEvent->getEvent()->sender;
 
         $this->container
-            ->get('app.pullrequest_listener')
+            ->get('AppBundle\PullRequests\Listener')
             ->welcomePeople($pullRequest, $sender)
         ;
 
@@ -222,7 +222,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         }
 
         $success = $this->container
-            ->get('app.pullrequest_listener')
+            ->get('AppBundle\PullRequests\Listener')
             ->removePullRequestValidationComment($pullRequest)
         ;
 
@@ -249,7 +249,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         }
 
         $success = $this->container
-            ->get('app.pullrequest_listener')
+            ->get('AppBundle\PullRequests\Listener')
             ->removeCommitValidationComment($pullRequest)
         ;
 

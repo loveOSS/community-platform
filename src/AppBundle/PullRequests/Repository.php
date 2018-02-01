@@ -36,12 +36,12 @@ class Repository implements RepositoryInterface
     public function __construct(
         SearchRepository $searchRepository,
         KnpCommentsApi $knpCommentsApi,
-        $repositoryUsername,
+        $repositoryOwner,
         $repositoryName
         ) {
         $this->searchRepository = $searchRepository;
         $this->knpCommentsApi = $knpCommentsApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryUsername = $repositoryOwner;
         $this->repositoryName = $repositoryName;
     }
 

@@ -5,6 +5,7 @@ namespace tests\AppBundle\PullRequests;
 use AppBundle\PullRequests\CommitParser;
 use Lpdigital\Github\Entity\PullRequest;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
@@ -41,7 +42,7 @@ class CommitParserTest extends WebTestCase
      */
     public function testValidation($label, $expected)
     {
-        $validator = self::$kernel->getContainer()->get('validator');
+        $validator = self::$kernel->getContainer()->get(ValidatorInterface::class);
         $parser = new CommitParser($label, self::$pullRequest);
 
         $validationsErrors = $validator->validate($parser);

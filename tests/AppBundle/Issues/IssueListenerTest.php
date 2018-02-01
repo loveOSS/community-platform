@@ -6,11 +6,12 @@ use AppBundle\Issues\Listener;
 use AppBundle\Issues\Status;
 use AppBundle\Issues\StatusApi;
 use Psr\Log\NullLogger;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class IssueListenerTest extends \PHPUnit_Framework_TestCase
+class IssueListenerTest extends TestCase
 {
     /**
      * @var StatusApi|\PHPUnit_Framework_MockObject_MockObject
