@@ -9,7 +9,9 @@ services:
             $repositoryName: '%repository_name%'
             $recipients: '%recipients%'
             $adminMail: '%admin_mail%'
-
+            $enableLabels: '%enable_labels%'
+            $enableOnPrCreation: '%labels_pr_creation%'
+            $expectedToken: '%github_secured_token%'
 
     AppBundle\:
         resource: '../../src/AppBundle/*'
@@ -25,14 +27,11 @@ services:
     Lpdigital\Github\Parser\WebhookResolver:
 
     AppBundle\Event\GitHubEventResolver:
-        class: AppBundle\Event\GitHubEventResolver
         tags:
             - { name: controller.argument_value_resolver, priority: 110 }
 
 # GitHub Client
-
-    Github\HttpClient\Builder:
-        arguments: ['Http\Adapter\Guzzle6\Client']
+    Http\Adapter\Guzzle6\Client:
 
     Github\Client:
         calls:
@@ -41,33 +40,27 @@ services:
 # GitHub API
 
     Github\Api\Issue:
-        factory: ['Github\Client', api]
+        factory: 'Github\Client:api'
         arguments: [issue]
 
     Github\Api\Issue\Comments:
-        factory: ['Github\Api\Issue', comments]
+        factory: 'Github\Api\Issue:comments'
 
     Github\Api\PullRequest:
-        factory: ['Github\Client', api]
+        factory: 'Github\Client:api'
         arguments: [pull_request]
 
     Github\Api\Repo:
-        factory: ['Github\Client', api]
+        factory: 'Github\Client:api'
         arguments: [repository]
 
     Github\Api\Organization:
-        factory: ['Github\Client', api]
+        factory: 'Github\Client:api'
         arguments: [organization]
 
     Github\Api\Search:
-        factory: ['Github\Client', api]
+        factory: 'Github\Client:api'
         arguments: [search]
 
     Github\Api\Issue\Labels:
-        factory: ['Github\Api\Issue', labels]
-
-# Subscribers
-
-    AppBundle\Security\GitHubTokenValidatorSubscriber:
-        arguments:
-            $expectedToken: '%github_secured_token%'
+        factory: 'Github\Api\Issue:labels'

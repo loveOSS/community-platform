@@ -30,7 +30,7 @@ class SignatureValidatorTest extends TestCase
      */
     public function testCorrectSignature($requestBody, $signature)
     {
-        $this->signatureValidator->validate($this->createRequest($requestBody, $signature), self::SECRET);
+        $this->assertTrue($this->signatureValidator->validate($this->createRequest($requestBody, $signature), self::SECRET));
     }
 
     public function correctSignatures()

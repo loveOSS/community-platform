@@ -42,6 +42,8 @@ class SendPullRequestReportCommand extends Command
 
     public function __construct(Reporter $reporter, Mailer $mailer, array $recipients, string $adminMail)
     {
+        parent::__construct();
+
         $this->reporter = $reporter;
         $this->mailer = $mailer;
         $this->recipients = $recipients;
