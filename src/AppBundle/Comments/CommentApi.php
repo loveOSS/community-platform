@@ -19,7 +19,7 @@ class CommentApi implements CommentApiInterface
     /**
      * @var string
      */
-    private $repositoryUsername;
+    private $repositoryOwner;
 
     /**
      * @var string
@@ -31,10 +31,14 @@ class CommentApi implements CommentApiInterface
      */
     private $twig;
 
-    public function __construct(KnpCommentApi $knpCommentApi, $repositoryUsername, $repositoryName, Twig_Environment $twig)
-    {
+    public function __construct(
+        KnpCommentApi $knpCommentApi,
+        string $repositoryOwner,
+        string $repositoryName,
+        Twig_Environment $twig
+    ) {
         $this->knpCommentApi = $knpCommentApi;
-        $this->repositoryUsername = $repositoryUsername;
+        $this->repositoryOwner = $repositoryOwner;
         $this->repositoryName = $repositoryName;
         $this->twig = $twig;
     }
@@ -46,7 +50,7 @@ class CommentApi implements CommentApiInterface
     {
         $this->knpCommentApi
             ->create(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 $pullRequest->getNumber(), [
                     'body' => $comment,
@@ -63,7 +67,7 @@ class CommentApi implements CommentApiInterface
         $comment = $this->twig->render($templateName, $params);
         $this->knpCommentApi
             ->create(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 $pullRequest->getNumber(), [
                     'body' => $comment,
@@ -79,7 +83,7 @@ class CommentApi implements CommentApiInterface
     {
         $this->knpCommentApi
             ->remove(
-                $this->repositoryUsername,
+                $this->repositoryOwner,
                 $this->repositoryName,
                 $commentId
             );

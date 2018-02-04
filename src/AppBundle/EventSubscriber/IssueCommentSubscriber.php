@@ -3,22 +3,25 @@
 namespace AppBundle\EventSubscriber;
 
 use AppBundle\Event\GitHubEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use AppBundle\Issues\Listener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class IssueCommentSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var ContainerInterface
+     * @var Listener
      */
-    public $container;
+    private $issuesListener;
 
     /**
-     * @param ContainerInterface $container
+     * @var bool
      */
-    public function setContainer(ContainerInterface $container)
+    private $enableLabels;
+
+    public function __construct(Listener $issuesListener, bool $enableLabels)
     {
-        $this->container = $container;
+        $this->issuesListener = $issuesListener;
+        $this->enableLabels = $enableLabels;
     }
 
     /**
@@ -38,11 +41,10 @@ class IssueCommentSubscriber implements EventSubscriberInterface
      */
     public function addLabels(GitHubEvent $githubEvent)
     {
-        if (true === $this->container->getParameter('enable_labels')) {
+        if (true === $this->enableLabels) {
             $event = $githubEvent->getEvent();
 
-            $this->container
-                ->get('app.issue_listener')
+            $this->issuesListener
                 ->handleCommentAddedEvent(
                     $event->issue->getNumber(),
                     $event->comment->getBody()

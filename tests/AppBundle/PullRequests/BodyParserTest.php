@@ -4,11 +4,12 @@ namespace tests\AppBundle\PullRequests;
 
 use AppBundle\PullRequests\BodyParser;
 use Lpdigital\Github\Parser\WebhookResolver;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class BodyParserTest extends \PHPUnit_Framework_TestCase
+class BodyParserTest extends TestCase
 {
     private $bodyParser;
     private $event;

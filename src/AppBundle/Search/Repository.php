@@ -22,13 +22,13 @@ class Repository
     /**
      * @var string
      */
-    private $repositoryName;
+    private $repositoryOwner;
 
-    public function __construct(Search $searchApi, string $repositoryUsername, string $repositoryName)
+    public function __construct(Search $searchApi, string $repositoryOwner, string $repositoryName)
     {
         $this->searchApi = $searchApi;
-        $this->repositoryUsername = $repositoryUsername;
-        $this->repositoryName = $repositoryName;
+        $this->repositoryUsername = $repositoryOwner;
+        $this->repositoryOwner = $repositoryName;
     }
 
     /**
@@ -41,7 +41,7 @@ class Repository
         $basicFilters = [
             'type' => 'pr',
             'state' => 'open',
-            'repo' => $this->repositoryUsername.'/'.$this->repositoryName,
+            'repo' => $this->repositoryUsername.'/'.$this->repositoryOwner,
         ];
 
         $allFilters = array_merge($basicFilters, $filters);

@@ -4,7 +4,8 @@ namespace AppBundle\EventSubscriber;
 
 use AppBundle\Diff\Diff;
 use AppBundle\Event\GitHubEvent;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use AppBundle\Issues\Listener as IssuesListener;
+use AppBundle\PullRequests\Listener as PullRequestsListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class PullRequestSubscriber implements EventSubscriberInterface
@@ -13,11 +14,28 @@ class PullRequestSubscriber implements EventSubscriberInterface
     const CLASSIC_PATH = '#^themes\/classic\/#';
 
     /**
-     * @param ContainerInterface $container
+     * @var IssuesListener
      */
-    public function setContainer(ContainerInterface $container)
+    private $issuesListener;
+
+    /**
+     * @var PullRequestsListener
+     */
+    private $pullRequestsListener;
+
+    /**
+     * @var bool
+     */
+    private $enableOnPrCreation;
+
+    public function __construct(
+        IssuesListener $issuesListener,
+        PullRequestsListener $pullRequestsListener,
+        bool $enableOnPrCreation)
     {
-        $this->container = $container;
+        $this->issuesListener = $issuesListener;
+        $this->pullRequestsListener = $pullRequestsListener;
+        $this->enableOnPrCreation = $enableOnPrCreation;
     }
 
     /**
@@ -56,11 +74,8 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
-        if (true === $this->container->getParameter('labels_pr_creation')) {
-            $this->container
-                ->get('app.issue_listener')
-                ->handlePullRequestCreatedEvent($pullRequest->getNumber())
-            ;
+        if (true === $this->enableOnPrCreation) {
+            $this->issuesListener->handlePullRequestCreatedEvent($pullRequest->getNumber());
 
             $githubEvent->addStatus([
                 'event' => 'pr_opened',
@@ -79,10 +94,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
-        $this->container
-            ->get('app.pullrequest_listener')
-            ->checkForTableDescription($pullRequest)
-        ;
+        $this->pullRequestsListener->checkForTableDescription($pullRequest);
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
@@ -100,10 +112,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
     {
         $pullRequest = $githubEvent->getEvent()->pullRequest;
 
-        $hasErrors = $this->container
-            ->get('app.pullrequest_listener')
-            ->checkCommits($pullRequest)
-        ;
+        $hasErrors = $this->pullRequestsListener->checkCommits($pullRequest);
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
@@ -125,13 +134,10 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->additions()->contains(self::TRANS_PATTERN)->match()) {
-            $this->container
-                ->get('app.issue_listener')
-                ->handleWaitingForWordingEvent($pullRequest->getNumber())
-            ;
+            $this->issuesListener->handleWaitingForWordingEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
@@ -143,8 +149,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
 
     public function checkIfPrFixCriticalIssue(GitHubEvent $githubEvent)
     {
-        $labelWasAdded = $this->container
-            ->get('app.issue_listener')
+        $labelWasAdded = $this->issuesListener
             ->addLabelCriticalLabelIfNeeded($githubEvent->getEvent()->pullRequest)
         ;
 
@@ -169,13 +174,10 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $diff = Diff::create(file_get_contents($pullRequest->getDiffUrl()));
 
         if ($found = $diff->path(self::CLASSIC_PATH)->match()) {
-            $this->container
-                ->get('app.issue_listener')
-                ->handleClassicChangesEvent($pullRequest->getNumber())
-            ;
+            $this->issuesListener->handleClassicChangesEvent($pullRequest->getNumber());
         }
 
-        $eventStatus = $event->getAction() === 'opened' ? 'opened' : 'edited';
+        $eventStatus = 'opened' === $event->getAction() ? 'opened' : 'edited';
 
         $githubEvent->addStatus([
             'event' => 'pr_'.$eventStatus,
@@ -196,10 +198,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
         $pullRequest = $githubEvent->getEvent()->pullRequest;
         $sender = $githubEvent->getEvent()->sender;
 
-        $this->container
-            ->get('app.pullrequest_listener')
-            ->welcomePeople($pullRequest, $sender)
-        ;
+        $this->pullRequestsListener->welcomePeople($pullRequest, $sender);
 
         $githubEvent->addStatus([
             'event' => 'pr_opened',
@@ -221,10 +220,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $success = $this->container
-            ->get('app.pullrequest_listener')
-            ->removePullRequestValidationComment($pullRequest)
-        ;
+        $success = $this->pullRequestsListener->removePullRequestValidationComment($pullRequest);
 
         if ($success) {
             $githubEvent->addStatus([
@@ -248,10 +244,7 @@ class PullRequestSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $success = $this->container
-            ->get('app.pullrequest_listener')
-            ->removeCommitValidationComment($pullRequest)
-        ;
+        $success = $this->pullRequestsListener->removeCommitValidationComment($pullRequest);
 
         if ($success) {
             $githubEvent->addStatus([

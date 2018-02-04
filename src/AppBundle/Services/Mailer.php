@@ -38,15 +38,14 @@ class Mailer
         array $params,
         $bcc = null
     ) {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
+        $message = (new \Swift_Message($subject))
             ->setFrom($sender)
             ->setTo($recipient)
             ->setContentType('text/html')
             ->setBody($this->twig->render($templateName, $params))
         ;
 
-        if (!is_null($bcc)) {
+        if (null !== $bcc) {
             $message->setBcc($bcc);
         }
 

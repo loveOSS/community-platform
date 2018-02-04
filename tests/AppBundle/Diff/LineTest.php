@@ -3,16 +3,17 @@
 namespace tests\AppBundle\Diff;
 
 use AppBundle\Diff\Line;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  */
-class LineTest extends \PHPUnit_Framework_TestCase
+class LineTest extends TestCase
 {
     const TRANS_PATTERN = '#(trans\(|->l\()#';
 
     /**
-     * @dataProvider testCases
+     * @dataProvider matchesCases
      *
      * @param mixed $content
      * @param mixed $expected
@@ -47,7 +48,7 @@ class LineTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $line->getFilepath());
     }
 
-    public function testCases()
+    public function matchesCases()
     {
         return [
             ['value.call()', false],
