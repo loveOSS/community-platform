@@ -36,12 +36,12 @@ The community-platform "Home page" is now available at "http://localhost:81/".
 ```
 
 ```bash
-export SYMFONY_PHPUNIT_VERSION=5.5
+export SYMFONY_PHPUNIT_VERSION=6.3
 export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
 ```
 
-> To launch unit tests, you only need to setup your own Github token (`GH_TOKEN`).
+> To launch tests suite, you only need to setup your own Github token (`GH_TOKEN`).
 
 ## Our standards ?
 
