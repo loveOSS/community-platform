@@ -50,7 +50,7 @@ RUN mkdir -p \
 		var/sessions \
 	&& composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest \
 	&& composer clear-cache \
-# Permissions hack because setfacl does not work on Mac and Windows
+    # Permissions hack because setfacl does not work on Mac and Windows
 	&& chown -R www-data var
 
 COPY app app/
