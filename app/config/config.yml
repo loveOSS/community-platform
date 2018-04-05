@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    labels_pr_creation: false
+    labels_pr_creation: true
     enable_labels: true
 
 framework:
