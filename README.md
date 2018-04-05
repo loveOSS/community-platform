@@ -23,22 +23,17 @@ composer install // and complete the interactive fields asked
 First, setup the `docker-compose.yml` file with a valid GitHub token and a valid Secure token (can be empty).
 
 ```bash
-cp docker-compose.yml.dist docker-compose.yml
 make start
 ```
 
-The community-platform "Home page" is now available at "http://localhost:81/".
+The Home page is now available at "http://localhost:81/".
 
 ## How to test ?
 
 ```bash
 ./vendor/bin/simple-phpunit
-```
-
-```bash
-export SYMFONY_PHPUNIT_VERSION=6.3
-export GH_TOKEN=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export GH_SECURED_TOKEN=YYYYYYYYYYYYYYYYYYYYYYYYYYYY
+# or (using docker)
+make test
 ```
 
 > To launch tests suite, you only need to setup your own Github token (`GH_TOKEN`).
@@ -51,13 +46,12 @@ Yeah, mostly the *Symfony* ones:
 ./vendor/bin/php-cs-fixer fix # we use the Symfony level + short array notation filter
 ```
 
-## What can I expect from GitHub platform?
+## What can I expect from the Community Platform?
 
 * Comment on a pull request to help a contributor fix his work;
 * Extract data from the pull request and look for some terms;
 * Manage labels;
 * Validate a pull request description;
-* Validate every commit label;
 * Welcome every new contributor;
 * Labelize a PR regarding information in description
 * Labelize a PR regarding files updated
