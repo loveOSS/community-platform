@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    environment:
+      # Change "dev" to "prod" in production
+      - APP_ENV=dev
+      - APP_DEBUG=true
+      - GH_TOKEN=putAValidGithubToken
+      - GH_SECURED_TOKEN=putAValidSecuredToken
+    volumes:
+      # Comment out the next line in production
+      - ./:/srv/community-platform:rw
+      # This is for assets:install
+      - ./web:/srv/community-platform/web:rw
+      # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
+      - /srv/community-platform/var
+      - /srv/community-platform/var/cache
+      - /srv/community-platform/var/logs
+      - /srv/community-platform/var/sessions
+      - /srv/community-platform/vendor
+    networks:
+      - community-platform
+  db:
+    build:
+      context: ./docker/db
+      dockerfile: ./Dockerfile
+    environment:
+      - MYSQL_DATABASE=community_platform
+      # You should definitely change the password in production
+      - MYSQL_PASSWORD=community_platform
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_USER=community_platform
+    volumes:
+      - db-data:/var/lib/mysql:rw
+      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+      # - ./docker/db/data:/var/lib/mysql:rw
+  nginx:
+    image: nginx:1.11-alpine
+    depends_on:
+      - app
+    ports:
+      - '81:80'
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./web:/srv/community-platform/web:ro
+    networks:
+      - community-platform
+
+volumes:
+  app-web: {}
+  db-data: {}
+
+networks:
+  community-platform: ~

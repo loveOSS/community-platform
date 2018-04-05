@@ -31,30 +31,28 @@ services:
     # Integration tests shouldn't post comments to github
     Psr\Log\NullLogger:
 
-    Tests\AppBundle\Comments\FakeCommentApi:
+    Tests\CoreBundle\Comments\FakeCommentApi:
         - '@Github\Api\Issue\Comments'
         - '%repository_username%'
         - '%repository_name%'
         - '@twig'
 
-    Tests\AppBundle\Issues\NullStatusApi:
+    Tests\CoreBundle\Issues\NullStatusApi:
         arguments:
-            - '@AppBundle\Issues\CachedLabelsApi'
+            - '@CoreBundle\Issues\CachedLabelsApi'
             - '%repository_username%'
             - '%repository_name%'
 
     # Your integrations tests shouldn't post comments to github
-    AppBundle\PullRequests\Listener:
+    CoreBundle\PullRequests\Listener:
         arguments:
-            - '@Tests\AppBundle\Comments\FakeCommentApi'
-            - '@AppBundle\Commits\Repository'
+            - '@Tests\CoreBundle\Comments\FakeCommentApi'
+            - '@CoreBundle\Commits\Repository'
             - '@validator'
-            - '@AppBundle\PullRequests\Repository'
+            - '@CoreBundle\PullRequests\Repository'
             - '@Psr\Log\NullLogger'
 
-    AppBundle\Issues\Listener:
+    CoreBundle\Issues\Listener:
         arguments:
-            - '@Tests\AppBundle\Issues\NullStatusApi'
+            - '@Tests\CoreBundle\Issues\NullStatusApi'
             - '@Psr\Log\NullLogger'
-
-

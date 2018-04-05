@@ -2,6 +2,7 @@
 
 APP=docker-compose exec -T app
 TAPP=docker-compose exec
+TTAPP=docker-compose exec -e APP_ENV=test
 CAPP=docker-compose run app composer
 CONSOLE=$(APP) /usr/local/bin/php bin/console
 
@@ -38,7 +39,7 @@ nginx:          ## Access shell of nginx container
 	$(TAPP) nginx sh
 
 test:          ## Launch tests
-	$(TAPP) app ./vendor/bin/simple-phpunit
+	$(TAPP) app env APP_ENV=test ./vendor/bin/simple-phpunit
 
 server:         ## Start local PHP server (Non docker use only)
 	php -S localhost:8888 -t web
