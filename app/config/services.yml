@@ -1,5 +1,4 @@
 services:
-
     _defaults:
         autowire: true
         autoconfigure: true
@@ -13,12 +12,12 @@ services:
             $enableOnPrCreation: '%labels_pr_creation%'
             $expectedToken: '%github_secured_token%'
 
-    AppBundle\:
-        resource: '../../src/AppBundle/*'
-        exclude: '../../src/AppBundle/Event/GitHubEvent.php'
+    CoreBundle\:
+        resource: '../../src/CoreBundle/*'
+        exclude: '../../src/CoreBundle/Event/GitHubEvent.php'
 
-    AppBundle\Controller\:
-        resource: '../../src/AppBundle/Controller'
+    CoreBundle\Controller\:
+        resource: '../../src/CoreBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
 
@@ -26,7 +25,7 @@ services:
 # Argument value resolver
     Lpdigital\Github\Parser\WebhookResolver:
 
-    AppBundle\Event\GitHubEventResolver:
+    CoreBundle\Event\GitHubEventResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 110 }
 
