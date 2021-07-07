@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b3f947b97e5e80095dd0c3c94a09e35",
+    "content-hash": "68ce2488e52764cd14c04abd885d2859",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1309,17 +1309,17 @@
             "time": "2018-03-23T16:42:55+00:00"
         },
         {
-            "name": "lp-digital/github-event-parser",
-            "version": "v0.8.3",
+            "name": "love-oss/github-event-parser",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Lp-digital/github-event-parser.git",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c"
+                "url": "https://github.com/loveOSS/github-event-parser.git",
+                "reference": "dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
+                "url": "https://api.github.com/repos/loveOSS/github-event-parser/zipball/dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153",
+                "reference": "dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153",
                 "shasum": ""
             },
             "require": {
@@ -1337,27 +1337,31 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Lpdigital\\Github\\": ""
+                    "LoveOSS\\Github\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0+"
+                "MIT"
             ],
             "authors": [
                 {
                     "name": "Mickaël Andrieu",
-                    "email": "mickael.andrieu@lp-digital.fr"
+                    "email": "mickael.andrieu@solvolabs.com"
                 }
             ],
             "description": "PHP library to get a readable representation of events dispatched by Github API v3",
-            "homepage": "https://github.com/Lp-digital/github-event-parser",
+            "homepage": "https://github.com/loveOSS/github-event-parser",
             "keywords": [
                 "event",
                 "github",
                 "json parser"
             ],
-            "time": "2017-04-19T20:00:10+00:00"
+            "support": {
+                "issues": "https://github.com/loveOSS/github-event-parser/issues",
+                "source": "https://github.com/loveOSS/github-event-parser/tree/0.8.3"
+            },
+            "time": "2021-07-07T05:10:42+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1996,6 +2000,9 @@
                 "psr",
                 "psr-6"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/master"
+            },
             "time": "2016-08-06T20:24:11+00:00"
         },
         {
@@ -2045,6 +2052,10 @@
                 "container-interop",
                 "psr"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/master"
+            },
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
@@ -2851,16 +2862,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.7",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "24a68710c6ddc1e3d159a110cef94cedfcf3c611"
+                "reference": "51d2a2708c6ceadad84393f8581df1dcf9e5e84b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/24a68710c6ddc1e3d159a110cef94cedfcf3c611",
-                "reference": "24a68710c6ddc1e3d159a110cef94cedfcf3c611",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/51d2a2708c6ceadad84393f8581df1dcf9e5e84b",
+                "reference": "51d2a2708c6ceadad84393f8581df1dcf9e5e84b",
                 "shasum": ""
             },
             "require": {
@@ -2889,11 +2900,6 @@
                 "symfony/yaml": ""
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\DependencyInjection\\": ""
@@ -2918,7 +2924,24 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-29T11:25:31+00:00"
+            "support": {
+                "source": "https://github.com/symfony/dependency-injection/tree/v3.4.47"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-24T10:57:07+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
@@ -5585,5 +5608,6 @@
         "ext-mbstring": "*",
         "ext-zip": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
 }
