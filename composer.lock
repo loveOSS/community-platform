@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b3f947b97e5e80095dd0c3c94a09e35",
+    "content-hash": "68ce2488e52764cd14c04abd885d2859",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1309,17 +1309,17 @@
             "time": "2018-03-23T16:42:55+00:00"
         },
         {
-            "name": "lp-digital/github-event-parser",
-            "version": "v0.8.3",
+            "name": "love-oss/github-event-parser",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Lp-digital/github-event-parser.git",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c"
+                "url": "https://github.com/loveOSS/github-event-parser.git",
+                "reference": "dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lp-digital/github-event-parser/zipball/2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
-                "reference": "2a57cd8ab1cf7e12fb680fd61afd1e9725db708c",
+                "url": "https://api.github.com/repos/loveOSS/github-event-parser/zipball/dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153",
+                "reference": "dd6858e3bdf8b8ef92ac3e8d81ec25aba4e50153",
                 "shasum": ""
             },
             "require": {
@@ -1337,27 +1337,31 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Lpdigital\\Github\\": ""
+                    "LoveOSS\\Github\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0+"
+                "MIT"
             ],
             "authors": [
                 {
                     "name": "Mickaël Andrieu",
-                    "email": "mickael.andrieu@lp-digital.fr"
+                    "email": "mickael.andrieu@solvolabs.com"
                 }
             ],
             "description": "PHP library to get a readable representation of events dispatched by Github API v3",
-            "homepage": "https://github.com/Lp-digital/github-event-parser",
+            "homepage": "https://github.com/loveOSS/github-event-parser",
             "keywords": [
                 "event",
                 "github",
                 "json parser"
             ],
-            "time": "2017-04-19T20:00:10+00:00"
+            "support": {
+                "issues": "https://github.com/loveOSS/github-event-parser/issues",
+                "source": "https://github.com/loveOSS/github-event-parser/tree/0.8.3"
+            },
+            "time": "2021-07-07T05:10:42+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5406,16 +5410,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.4.7",
+            "version": "v3.4.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "e4b72beb8961340764367a804f21044e83fc19a8"
+                "reference": "a43a2f6c465a2d99635fea0addbebddc3864ad97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/e4b72beb8961340764367a804f21044e83fc19a8",
-                "reference": "e4b72beb8961340764367a804f21044e83fc19a8",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/a43a2f6c465a2d99635fea0addbebddc3864ad97",
+                "reference": "a43a2f6c465a2d99635fea0addbebddc3864ad97",
                 "shasum": ""
             },
             "require": {
@@ -5425,7 +5429,6 @@
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
             },
             "suggest": {
-                "ext-zip": "Zip support is required when using bin/simple-phpunit",
                 "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
             },
             "bin": [
@@ -5468,7 +5471,10 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-03-20T23:37:33+00:00"
+            "support": {
+                "source": "https://github.com/symfony/phpunit-bridge/tree/3.4"
+            },
+            "time": "2019-04-16T09:03:16+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -5585,5 +5591,6 @@
         "ext-mbstring": "*",
         "ext-zip": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
 }
